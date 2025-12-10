@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "fastcrystalspin",
+  "version": "${version}",
+  "name": "Fast Crystal Spin",
+  "description": "Client-side mod that makes End Crystals spin faster visually.",
+  "authors": [
+    "George"
+  ],
+  "contact": {
+    "homepage": "https://github.com/ggunderscoreg/fastcrystalspin"
+  },
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "ca.gg_g.fastcrystalspin.FastCrystalSpinClient"
+    ]
+  },
+  "mixins": [
+    "fastcrystalspin.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.10",
+    "minecraft": "1.21.4",
+    "fabric-api": "*"
+  }
+}
