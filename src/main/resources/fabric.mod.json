@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "fastcrystalspin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "name": "Fast Crystal Spin",
   "description": "Client-side mod that makes End Crystals spin faster visually.",
   "authors": [
