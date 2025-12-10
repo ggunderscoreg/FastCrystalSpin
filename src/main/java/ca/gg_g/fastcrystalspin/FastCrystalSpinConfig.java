@@ -1,65 +1,45 @@
 package ca.gg_g.fastcrystalspin;
 
-import net.fabricmc.loader.api.FabricLoader;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
-import java.util.List;
+import java.nio.file.Paths;
+import java.util.Properties;
 
-/**
- * Very simple config loader for FastCrystalSpin.
- *
- * Config file: .minecraft/config/fastcrystalspin.cfg
- *
- * Format:
- *   # comments start with #
- *   multiplier=2.0
- */
 public class FastCrystalSpinConfig {
 
-    // Default value; will be overwritten if config file has a valid value.
+    private static final Path CONFIG_PATH = Paths.get("config", "fastcrystalspin.cfg");
+
+    // default value
     public static float spinSpeedMultiplier = 2.0F;
 
     public static void load() {
-        // Resolve the config dir from Fabric
-        Path configDir = FabricLoader.getInstance().getConfigDir();
-        Path configPath = configDir.resolve("fastcrystalspin.cfg");
-
-        if (Files.exists(configPath)) {
-            try {
-                List<String> lines = Files.readAllLines(configPath);
-                for (String raw : lines) {
-                    String line = raw.trim();
-                    if (line.isEmpty() || line.startsWith("#")) continue;
-
-                    String[] parts = line.split("=", 2);
-                    if (parts.length == 2 && parts[0].trim().equalsIgnoreCase("multiplier")) {
-                        try {
-                            spinSpeedMultiplier = Float.parseFloat(parts[1].trim());
-                        } catch (NumberFormatException ignored) {
-                            // keep default if parse fails
-                        }
-                    }
-                }
-            } catch (IOException e) {
-                // If reading fails, just keep the default
+        try {
+            if (!Files.exists(CONFIG_PATH)) {
+                saveDefault();
+                return;
             }
-        } else {
-            // Create a default config file
-            try {
-                Files.createDirectories(configDir);
-                String content = ""
-                        + "# FastCrystalSpin config\n"
-                        + "# multiplier = spin speed factor (float)\n"
-                        + "# Example: multiplier=1.0 (vanilla), 2.0 (2x faster), 3.5, etc.\n"
-                        + "multiplier=2.0\n";
-                Files.writeString(configPath, content,
-                        StandardOpenOption.CREATE,
-                        StandardOpenOption.TRUNCATE_EXISTING);
-            } catch (IOException ignored) {
-            }
+
+            Properties props = new Properties();
+            props.load(Files.newInputStream(CONFIG_PATH));
+
+            String value = props.getProperty("spinSpeedMultiplier", "2.0");
+            spinSpeedMultiplier = Float.parseFloat(value);
+        } catch (IOException | NumberFormatException e) {
+            System.err.println("[FastCrystalSpin] Failed to load config, using default. " + e.getMessage());
+            spinSpeedMultiplier = 2.0F;
         }
+    }
+
+    private static void saveDefault() throws IOException {
+        Files.createDirectories(CONFIG_PATH.getParent());
+        Properties props = new Properties();
+        props.setProperty("spinSpeedMultiplier", "2.0");
+        props.store(Files.newOutputStream(CONFIG_PATH), "FastCrystalSpin config");
+    }
+
+    // 👉 ADD THIS
+    public static float getSpinSpeedMultiplier() {
+        return spinSpeedMultiplier;
     }
 }
