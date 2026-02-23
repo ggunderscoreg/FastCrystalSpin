@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "id": "fastcrystalspin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "name": "Fast Crystal Spin",
   "description": "Client-side mod that makes End Crystals spin faster visually.",
   "authors": [
     "gg_g"
   ],
   "contact": {
-    "homepage": "https://github.com/ggunderscoreg/fastcrystalspin"
+    "homepage": "https://github.com/ggunderscoreg/FastCrystalSpin"
   },
   "license": "MIT",
   "environment": "client",
