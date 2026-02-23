@@ -5,7 +5,8 @@ Fixes delayed End Crystal visuals by speeding up crystal display/spin animations
 ➡ Modrinth: [fastcrystalspin](https://modrinth.com/mod/fastcrystalspin)
 
 ## Requirements
-- Minecraft 1.21.4
+- Minecraft 1.20.1-6 OR
+- Minecraft 1.21.X
 - Fabric Loader
 - Fabric API (required)
 
