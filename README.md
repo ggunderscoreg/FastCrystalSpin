@@ -1,4 +1,4 @@
-# FastCrystalSpin (Fabric)
+# FastCrystalSpin (Fabric) 4000+ Download on Modrinth
 Fixes delayed End Crystal visuals by speeding up crystal display/spin animations for PvP clarity.
 
 ## Downloads (Recommended)
