@@ -1,21 +1,13 @@
 package ca.gg_g.fastcrystalspin.mixin;
 
-import ca.gg_g.fastcrystalspin.FastCrystalSpinConfig;
-import net.minecraft.client.render.entity.EndCrystalEntityRenderer;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
-
-@Mixin(EndCrystalEntityRenderer.class)
-public class EndCrystalRendererMixin {
-
-    @ModifyVariable(
-            method = "render",          // <-- only the name now
-            at = @At("STORE"),
-            ordinal = 0
-    )
-    private float fastcrystalspin$scaleSpin(float originalAge) {
-
-        return originalAge * FastCrystalSpinConfig.getSpinSpeedMultiplier();
+/**
+ * Legacy renderer-side mixin kept as a reference during the 26.1.x port.
+ *
+ * The mod currently uses only EndCrystalEntityMixin because the 26.1.x render
+ * pipeline and local-variable layout need to be re-mapped before a safe
+ * renderer-side injection can be restored.
+ */
+public final class EndCrystalRendererMixin {
+    private EndCrystalRendererMixin() {
     }
 }
