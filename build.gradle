@@ -1,36 +1,42 @@
 plugins {
-    id "fabric-loom" version "1.9-SNAPSHOT"
-    id "maven-publish"
+    id 'net.fabricmc.fabric-loom' version '1.15.5'
+    id 'maven-publish'
 }
 
-version = project.mod_version + "+mc" + project.minecraft_version
+version = project.mod_version
 group = project.maven_group
-archivesBaseName = project.archives_base_name
+
+base {
+    archivesName = project.archives_base_name
+}
 
 repositories {
     mavenCentral()
-    maven {
-        name = "Fabric"
-        url = "https://maven.fabricmc.net/"
-    }
+    maven { url = 'https://maven.fabricmc.net/' }
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings "net.fabricmc:yarn:${yarn_mappings}:v2"
-    modImplementation "net.fabricmc:fabric-loader:${loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
-
-    // Add Gson for config file handling
-    implementation "com.google.code.gson:gson:2.10.1"
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 }
 
-loom {
-    // no extra config needed for this mod
+processResources {
+    inputs.property 'version', project.version
+
+    filesMatching('fabric.mod.json') {
+        expand 'version': inputs.properties.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 25
 }
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(25)
     }
+
+    withSourcesJar()
 }
