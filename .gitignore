@@ -2,10 +2,19 @@
 .gradle/
 build/
 
-# IntelliJ
+# IDE
 .idea/
+.vscode/
 *.iml
 out/
+bin/
+
+# Run files
+run/
+
+# Compiled classes / logs
+*.class
+*.log
 
 # OS junk
 .DS_Store
