@@ -1,6 +1,5 @@
 # FastCrystalSpin (Fabric)
 
-<<<<<<< HEAD
 Fixes delayed End Crystal visuals by speeding up crystal display/spin animations for better PvP clarity.
 
 ![Downloads](https://img.shields.io/modrinth/dt/fastcrystalspin?logo=modrinth&label=downloads)
@@ -17,7 +16,7 @@ Fixes delayed End Crystal visuals by speeding up crystal display/spin animations
 
 ## Older Supported Versions
 Older releases are still available for previous Minecraft versions:
-- **1.0.3**: Minecraft 1.21.x and 1.21.1-6
+- **1.0.3**: Minecraft 1.21.x and 1.20.1-6
 - **1.0.2** and older: see GitHub Releases or Modrinth version history
 
 ## Features
@@ -27,7 +26,7 @@ Older releases are still available for previous Minecraft versions:
 
 ## Commands
 - `/crystalspin reload`
-- `/crystalspin set [multiplier]`
+- `/crystalspin set <multiplier>`
 
 ## Install
 1. Install Fabric Loader
@@ -39,20 +38,3 @@ Older releases are still available for previous Minecraft versions:
 - This mod is visual/client-side only
 - Safe to use on vanilla servers
 - Download builds from Modrinth
-=======
-[![Modrinth Downloads](https://img.shields.io/modrinth/dt/fastcrystalspin?style=for-the-badge&logo=modrinth)](https://modrinth.com/mod/fastcrystalspin)
-
-Fixes delayed End Crystal visuals by speeding up crystal display/spin animations for better PvP clarity.
-
-## Download
-➡ [Download on Modrinth](https://modrinth.com/mod/fastcrystalspin)
-
-## Requirements
-- Minecraft 1.20.1–1.20.6
-- Minecraft 1.21.x
-- Fabric Loader
-- Fabric API
-
-## Installation
-Drop the mod `.jar` file and Fabric API into `.minecraft/mods`.
->>>>>>> origin/master
