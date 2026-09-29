@@ -24,7 +24,9 @@ public class FastCrystalSpinCommand {
                             .then(ClientCommands.literal("set")
                                     .then(ClientCommands.argument(
                                                     "multiplier",
-                                                    FloatArgumentType.floatArg(0.1F, 50.0F)
+                                                    FloatArgumentType.floatArg(
+                                                            FastCrystalSpinConfig.MIN_MULTIPLIER,
+                                                            FastCrystalSpinConfig.MAX_MULTIPLIER)
                                             )
                                             .executes(context -> {
                                                 float value = FloatArgumentType.getFloat(context, "multiplier");
