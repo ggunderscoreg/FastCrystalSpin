@@ -7,12 +7,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Properties;
 
+import net.fabricmc.loader.api.FabricLoader;
+
 public final class FastCrystalSpinConfig {
-    private static final Path CONFIG_PATH = Path.of("config", "fastcrystalspin.cfg");
+    private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("fastcrystalspin.cfg");
     private static final String KEY_MULTIPLIER = "multiplier";
     private static final float DEFAULT_MULTIPLIER = 2.0F;
-    private static final float MIN_MULTIPLIER = 0.1F;
-    private static final float MAX_MULTIPLIER = 50.0F;
+    public static final float MIN_MULTIPLIER = 1.0F;
+    public static final float MAX_MULTIPLIER = 50.0F;
 
     private static float spinSpeedMultiplier = DEFAULT_MULTIPLIER;
 
@@ -33,11 +35,21 @@ public final class FastCrystalSpinConfig {
             }
 
             String value = props.getProperty(KEY_MULTIPLIER, Float.toString(DEFAULT_MULTIPLIER));
-            setSpinSpeedMultiplier(Float.parseFloat(value));
+            float parsed = Float.parseFloat(value);
+            if (!Float.isFinite(parsed)) {
+                throw new NumberFormatException("Multiplier must be finite: " + value);
+            }
+            setSpinSpeedMultiplier(parsed);
+            if (parsed != spinSpeedMultiplier) {
+                save();
+            }
             FastCrystalSpinClient.LOGGER.info("Loaded config. Multiplier = {}", spinSpeedMultiplier);
         } catch (IOException | NumberFormatException e) {
             FastCrystalSpinClient.LOGGER.warn("Failed to load config, using default.", e);
             spinSpeedMultiplier = DEFAULT_MULTIPLIER;
+            if (e instanceof NumberFormatException) {
+                save();
+            }
         }
     }
 
@@ -70,6 +82,9 @@ public final class FastCrystalSpinConfig {
     }
 
     public static void setSpinSpeedMultiplier(float multiplier) {
+        if (!Float.isFinite(multiplier)) {
+            throw new IllegalArgumentException("Multiplier must be finite");
+        }
         spinSpeedMultiplier = clamp(multiplier, MIN_MULTIPLIER, MAX_MULTIPLIER);
     }
 
