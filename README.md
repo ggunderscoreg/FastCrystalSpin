@@ -9,20 +9,18 @@ Fixes delayed End Crystal visuals by speeding up crystal display/spin animations
 ## Download
 [Download on Modrinth](https://modrinth.com/mod/fastcrystalspin)
 
-## Latest Published Version
-**FastCrystalSpin v2.0.2** supports:
-- Minecraft 26.2.x
+## Current Source Version
+**FastCrystalSpin v2.0.3** supports:
+- Minecraft 26.3.x
 - Fabric Loader
 - Fabric API required
 - Client-side only
 
-The current source build targets Minecraft 26.1.1 and has version 2.0.1 in
-`gradle.properties`. The published 2.0.2 release supports 26.2; this source
-tree has not yet been updated to build against 26.2. Set `mod_version` when
-preparing a new source release. The jar metadata takes its version from there.
+The jar metadata takes its version from `mod_version` in `gradle.properties`.
 
 ## Older Supported Versions
 Older releases are still available for previous Minecraft versions:
+- **v2.0.2**: Minecraft 26.2.x
 - **v2.0.1**: Minecraft 26.1.x
 - **v1.0.3**: Minecraft 1.21.x and 1.20.1-6
 - **v1.0.2** and older: see GitHub Releases or Modrinth version history
